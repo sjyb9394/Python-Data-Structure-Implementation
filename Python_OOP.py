@@ -148,15 +148,3 @@ class Manager(Employee):
     def show_all_employees(self):
         for emp in self.employees:
             print('-->', emp.fullname())
-
-emp_1 = Employee('Yeongbin', 'Kim', 50000)
-emp_2 = Employee('Sejin', 'Park', 51000)
-
-print(emp_1.fullname)
-print(emp_1.email)
-
-emp_1.fullname = 'junsoeng lee'
-print(emp_1.fullname)
-print(emp_1.email)
-
-del emp_1.fullname
