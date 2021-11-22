@@ -35,6 +35,7 @@ class LinkedList:
     def add(self, Node, index = None):
         if not self.head:
             self.head = Node
+            self.size += 1
             return
         elif index == 0:
             self.addFirst(Node)
@@ -47,7 +48,6 @@ class LinkedList:
                 cur = cur.next
 
             cur.next = Node
-            self.size += 1
         else:
             current_idx = 0
             current_node = self.head
@@ -60,11 +60,14 @@ class LinkedList:
             current_node.next = Node
             Node.next = nextNode
 
+        self.size += 1
+
 
     def addFirst(self, Node):
         temp = self.head
         self.head = Node
         Node.next = temp
+        self.size+=1
 
     def clear(self):
         self.head = None
@@ -79,25 +82,74 @@ class LinkedList:
 
         return False
 
-    # when duplicates exist, just return the first one
     def get(self, index):
-        pass
+        # if index > list size, return -1
+        if not self.head or self.size <= index: return '-1'
+        
+        current_Node = self.head
+
+        while index>0:
+            current_Node = current_Node.next
+            index-=1
+
+        return current_Node.__str__()
 
     def getFirst(self):
         if not self.head: return ''
         return self.head.__str__()
 
     def getLast(self):
-        pass
+        return self.get(self.size-1).__str__()
 
     def remove(self, index):
-        pass
+        if not self.head or self.size < index+1:
+            raise ValueError('List Empty or Index out of range')
 
+        if index == 0:
+            return self.removeFirst()
+        elif index == self.size-1:
+            return self.removeLast()
+        else:
+            currentNode = self.head
+
+            while index-1>0:
+                currentNode = currentNode.next
+                index-=1
+
+            toReturn = currentNode.next
+            currentNode.next = currentNode.next.next
+
+            return toReturn.__str__()
+        
+    
+    # if list is empty, return 'Empty'
     def removeFirst(self):
-        pass
+        if not self.head: 
+            raise ValueError('This list has 0 node')
+
+        toReturn = self.head
+        self.head = self.head.next
+        return toReturn.__str__()
 
     def removeLast(self):
-        pass
+        if not self.head:
+            raise ValueError('List has 0 node')
+
+        if self.size == 1:
+            return self.removeFirst()
+
+        currentNode = self.head
+        
+        while currentNode.next.next:
+            currentNode = currentNode.next
+        
+        toReturn = currentNode.next
+        currentNode.next = None
+
+        return toReturn.__str__()
+        
+
+
 
     def getSize(self):
         return self.size

@@ -159,9 +159,30 @@ class Test_Linked_List(unittest.TestCase):
         self.assertEqual(self.test_cases[4].contains(Node(200)), False)
 
     
-    # # test get node from specific index 
-    # def test_get_specific_position(self):
-    #     pass
+    # test get node from specific index 
+    def test_get_specific_position(self):
+        self.answers = [
+            ['-1','1'],
+            ['20','30'],
+            ['-1','-1'],
+            ['0','200'],
+            ['2','3']
+        ]
+
+        self.assertEqual(self.test_cases[0].get(1), self.answers[0][0])
+        self.assertEqual(self.test_cases[0].get(0), self.answers[0][1])
+
+        self.assertEqual(self.test_cases[1].get(2), self.answers[1][0])
+        self.assertEqual(self.test_cases[1].get(3), self.answers[1][1])
+
+        self.assertEqual(self.test_cases[2].get(1), self.answers[2][0])
+        self.assertEqual(self.test_cases[2].get(0), self.answers[2][1])
+
+        self.assertEqual(self.test_cases[3].get(0), self.answers[3][0])
+        self.assertEqual(self.test_cases[3].get(2), self.answers[3][1])
+
+        self.assertEqual(self.test_cases[4].get(2), self.answers[4][0])
+        self.assertEqual(self.test_cases[4].get(6), self.answers[4][1])
     
     # test get node from first position
     def test_getFirst(self):
@@ -171,21 +192,52 @@ class Test_Linked_List(unittest.TestCase):
         self.assertEqual(self.test_cases[3].getFirst(), '0')
         self.assertEqual(self.test_cases[4].getFirst(), '10')
 
-    # # test get node frmo last position
-    # def test_getLast(self):
-    #     pass
+    # test get node frmo last position
+    def test_getLast(self):
+        self.assertEqual(self.test_cases[0].getLast(),'1')
+        self.assertEqual(self.test_cases[1].getLast(),'30')
+        self.assertEqual(self.test_cases[2].getLast(),'-1')
+        self.assertEqual(self.test_cases[3].getLast(),'200')
+        self.assertEqual(self.test_cases[4].getLast(),'30')
 
-    # # test remove node from specific index
-    # def test_remove_node_from_specific_position(self):
-    #     pass
+    # test remove node from specific index
+    def test_remove_node_from_specific_position(self):
 
-    # # test remove node from first position
-    # def test_removeFirst(self):
-    #     pass
+        self.assertEqual(self.test_cases[0].remove(0), '1')
+        self.assertEqual(self.test_cases[1].remove(1), '15')
+        self.assertEqual(self.test_cases[1].remove(1), '20')
+        self.assertEqual(self.test_cases[1].remove(1), '30')
+        self.assertEqual(self.test_cases[1].remove(0), '10')
 
-    # # test remove node from last position
-    # def test_removeLast(self):
-    #     pass
+        with self.assertRaises(ValueError):
+            self.test_cases[0].remove(2)
+            self.test_cases[0].remove(1)
+            self.test_cases[2].remove(1)
+
+        self.assertEqual(self.test_cases[3].remove(1), '150')
+        
+    # test remove node from first position
+    def test_removeFirst(self):
+
+        self.assertEqual(self.test_cases[0].removeFirst(), '1')
+        self.assertEqual(self.test_cases[1].removeFirst(), '10')
+
+        with self.assertRaises(ValueError):
+            self.test_cases[2].removeFirst()
+
+        self.assertEqual(self.test_cases[3].removeFirst(), '0')
+        self.assertEqual(self.test_cases[4].removeFirst(), '10')
+
+    # test remove node from last position
+    def test_removeLast(self):
+        self.assertEqual(self.test_cases[0].removeLast(), '1')
+        self.assertEqual(self.test_cases[1].removeLast(), '30')
+
+        with self.assertRaises(ValueError):
+            self.test_cases[2].removeLast()
+
+        self.assertEqual(self.test_cases[3].removeLast(), '200')
+        self.assertEqual(self.test_cases[4].removeLast(), '30')
 
     # test size of the lists
     def test_size(self):
