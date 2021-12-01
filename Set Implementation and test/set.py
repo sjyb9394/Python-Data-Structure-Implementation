@@ -11,12 +11,39 @@ Required Methods
 7. __iter__(element) : make the class iterable
 """
 
-# Linear times Implementation O(n)
-class Linear_Set:
-    def __init__(self):
-        pass
-
 # Set implementation using Hash table ( Average time complexity = O(1) ) 
 class Set:
     def __init__(self):
+        pass
+
+
+    def add(self):
+        pass
+
+
+    def remove(self):
+        pass
+
+
+    def contains(self):
+        pass
+
+
+    def union(self):
+        pass
+
+
+    def intersection(self):
+        pass
+
+
+    def difference(self):
+        pass
+
+
+    def __iter__(self):
+        pass
+
+
+    def __str__(self):
         pass
